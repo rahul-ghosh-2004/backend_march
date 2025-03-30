@@ -1,0 +1,17 @@
+1. Create a seperate file & folder structure for the entire backend.
+
+2. Create a seperate folder for this project.
+   create the entire backend file & folder structure.
+   create an express server.
+      1. /
+      2. /login
+      3. /logout
+      4. /home-page
+      5. /about-us
+      6. /careers
+      7. /contact
+      8. /blogs
+      9. /send/coffee
+      10. /fizzbuzz/fizz/buzz
+
+    message format ---> json (must)
