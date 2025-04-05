@@ -1,0 +1,8 @@
+1. Create an entire file & folder structure for the entire backend. Then create an user model    
+   (username, mobile, age, dob, pan, aadhaar, location, address), mobile model (name, model_number, color, battery, ram, storage), purchase record model (invoice_number, customer_name, invoice_price).
+
+2. Create an entire file & folder structure for the entire backend. Then create an books model   
+   (book_name, genre, author, price, published_date, book_version, total_page_count, book_category), user model (student_id, student_name, department, year_of_pass_out, stream, username, mobile, age, dob, pan, aadhaar, location, address).
+
+3. Create an entire file & folder structure for the entire backend. Then create a model for    
+   simple todo app (todoText, isCompletedStatus).
