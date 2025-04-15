@@ -1,0 +1,4 @@
+DBNames = [ "DBOne", "DBTwo", "DBThree" ]
+
+// create entire file and folder structure for each and every DBName.
+// Inside those project folders, you have to establish the server and db configuration seperately for each project. Also included HandleError and HandleResponse classes.
