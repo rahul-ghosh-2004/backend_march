@@ -25,9 +25,10 @@ const createTodo = async (req, res) => {
         )
     }
 
-    const todo = await Todo.create({
-        todoText: todoText?.trim()
-    })
+    const todo = await Todo.create(
+        {
+            todoText: todoText?.trim()
+        })
 
     /*
     const todo = {
@@ -63,17 +64,105 @@ const displayAllTodo = async (req, res) => {
     )
 }
 
-const deleteATodo = () => {
-    // JavaScript
-    // Back-End Class
-    // React Native
-    // Todo.findOneAndDelete({
-    //     "todoText": "JavaScript"
-    // })
+const deleteATodo = async (req, res) => {
+    /*
+    {
+       "todos": [
+           "Frontend",
+           "Backend",
+           "MERN Stack",
+           "Django"
+       ]
+    }
+    */
+   
+    // user se todo name pucho
+    // database call karke check karo ki todo present hai ya nehi
+    // present hota hai to delete kardo
+    // nehi present hota hai to error throw karo
+
+    const {todoText} = req?.body
+
+    if (todoText == undefined || null) {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo Text shouldn't be empty! :(")
+        )
+    }
+
+    if (todoText?.trim() == "") {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo Text shouldn't be empty! :(")
+        )
+    }
+
+    const todo = await Todo.findOne({ todoText: todoText?.trim() })
+
+    if (!todo) {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo not found! :(")
+        )
+    }
+
+    await Todo.deleteOne({ _id: todo?._id })
+
+    return res
+    .status(200)
+    .json(
+        new HandleResponse(200, {}, "Todo deleted successfully! :)")
+    )
 }
 
-const updateTodo = () => {
+const updateTodo = async (req, res) => {
+    const { todoText, newTodoText } = req?.body
 
+    if (todoText == undefined || null) {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo Text shouldn't be empty! :(")
+        )
+    }
+
+    if (todoText?.trim() == "") {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo Text shouldn't be empty! :(")
+        )
+    }
+
+    if (newTodoText?.trim() == "") {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "New Todo Text shouldn't be empty! :(")
+        )
+    }
+
+    const todo = await Todo.findOne({ todoText: todoText?.trim() })
+
+    if (!todo) {
+        return res
+        .status(400)
+        .json(
+            new HandleError(400, "Todo not found! :(")
+        )
+    }
+
+    todo.todoText = newTodoText
+    await todo.save()
+
+    return res
+    .status(200)
+    .json(
+        new HandleResponse(200, {}, "Todo Modified Successfully! :)")
+    )
 }
 
 export {

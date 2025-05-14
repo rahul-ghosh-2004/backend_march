@@ -43,9 +43,9 @@ app.use(express.static("public"))
 
 
 
-import router from "./routes/todo.route.js";
+import todoRouter from "./routes/todo.route.js";
 
-app.use("/api/v1/todo", router)
+app.use("/api/v1/todo", todoRouter)
 
 
 
